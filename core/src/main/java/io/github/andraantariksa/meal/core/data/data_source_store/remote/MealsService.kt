@@ -1,6 +1,7 @@
 package io.github.andraantariksa.meal.core.data.data_source_store.remote
 
 import io.github.andraantariksa.meal.core.data.data_source_store.remote.model.Categories
+import io.github.andraantariksa.meal.core.data.data_source_store.remote.model.MealOverviews
 import io.github.andraantariksa.meal.core.data.data_source_store.remote.model.Meals
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -19,10 +20,10 @@ interface MealsService {
     suspend fun getRandom(): Meals
 
     @GET("filter.php")
-    suspend fun filterByCategories(@Query("c") category: String): Meals
+    suspend fun filterByCategories(@Query("c") category: String): MealOverviews
 
     @GET("filter.php")
-    suspend fun filterByArea(@Query("a") area: String): Meals
+    suspend fun filterByArea(@Query("a") area: String): MealOverviews
 
     @GET("categories.php")
     suspend fun getCategories(): Categories

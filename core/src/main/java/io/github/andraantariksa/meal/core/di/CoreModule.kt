@@ -5,16 +5,18 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.github.andraantariksa.meal.core.data.data_source_store.local.data_source.MealsLocalDataSource
-import io.github.andraantariksa.meal.core.data.data_source_store.local.data_source.MealsLocalDataSourceImpl
-import io.github.andraantariksa.meal.core.data.data_source_store.local.data_source.MealsRemoteDataSource
-import io.github.andraantariksa.meal.core.data.data_source_store.local.data_source.MealsRemoteDataSourceImpl
+import io.github.andraantariksa.meal.core.data.data_source_store.local.MealsLocalDataSource
+import io.github.andraantariksa.meal.core.data.data_source_store.local.MealsLocalDataSourceImpl
+import io.github.andraantariksa.meal.core.data.data_source_store.remote.MealsRemoteDataSource
+import io.github.andraantariksa.meal.core.data.data_source_store.remote.MealsRemoteDataSourceImpl
 import io.github.andraantariksa.meal.core.data.data_source_store.remote.MealsService
 import io.github.andraantariksa.meal.core.data.data_source_store.remote.MealsServiceConst
 import io.github.andraantariksa.meal.core.data.repository.AppPreferenceRepositoryImpl
 import io.github.andraantariksa.meal.core.data.repository.MealsRepositoryImpl
 import io.github.andraantariksa.meal.core.domain.repository.AppPreferenceRepository
 import io.github.andraantariksa.meal.core.domain.repository.MealsRepository
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -33,6 +35,15 @@ object CoreModule {
 
     @Provides
     @Singleton
+    fun provideOkHttpClient() =
+        OkHttpClient.Builder().addInterceptor(
+            HttpLoggingInterceptor().apply {
+                setLevel(HttpLoggingInterceptor.Level.BASIC)
+            }
+        ).build()
+
+    @Provides
+    @Singleton
     fun provideMoshi() = Moshi.Builder().build()
 
     @Provides
@@ -48,8 +59,9 @@ object CoreModule {
 
     @Provides
     @Singleton
-    fun provideMealsService(moshi: Moshi): MealsService {
+    fun provideMealsService(moshi: Moshi, client: OkHttpClient): MealsService {
         val retrofit = Retrofit.Builder().baseUrl(MealsServiceConst.BASE_URL)
+            .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
         return retrofit.create(MealsService::class.java)

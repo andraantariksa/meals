@@ -25,7 +25,7 @@
             tools:layout="@layout/meals_category_fragment">
             <argument
                 android:name="categoryId"
-                app:argType="integer" />
+                app:argType="string" />
             <action
                 android:id="@+id/action_navigation_categories_to_navigation_meal"
                 app:destination="@id/navigation_meal" />
@@ -49,10 +49,7 @@
             android:name="io.github.andraantariksa.meals.ui.main.search.SearchFragment"
             tools:layout="@layout/search_fragment">
             <action
-                android:id="@+id/action_navigation_search_main_to_navigation_common_anime"
-                app:destination="@id/navigation_meals_category" />
-            <action
-                android:id="@+id/action_navigation_categories_to_navigation_meal"
+                android:id="@+id/action_navigation_search_to_navigation_meal"
                 app:destination="@id/navigation_meal" />
         </fragment>
 

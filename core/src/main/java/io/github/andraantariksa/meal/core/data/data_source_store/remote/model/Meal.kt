@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Meal(
     @Json(name = "dateModified")
-    val dateModified: Any,
+    val dateModified: String?,
     @Json(name = "idMeal")
     val idMeal: String,
     @Json(name = "strArea")
@@ -15,11 +15,11 @@ data class Meal(
     @Json(name = "strCategory")
     val strCategory: String,
     @Json(name = "strCreativeCommonsConfirmed")
-    val strCreativeCommonsConfirmed: Any,
+    val strCreativeCommonsConfirmed: String?,
     @Json(name = "strDrinkAlternate")
-    val strDrinkAlternate: Any,
+    val strDrinkAlternate: String?,
     @Json(name = "strImageSource")
-    val strImageSource: Any,
+    val strImageSource: String?,
     @Json(name = "strIngredient1")
     val strIngredient1: String?,
     @Json(name = "strIngredient10")
@@ -107,81 +107,82 @@ data class Meal(
     @Json(name = "strMeasure9")
     val strMeasure9: String?,
     @Json(name = "strSource")
-    val strSource: Any,
+    val strSource: String?,
     @Json(name = "strTags")
-    val strTags: String,
+    val strTags: String?,
     @Json(name = "strYoutube")
-    val strYoutube: String
+    val strYoutube: String?
 ) : io.github.andraantariksa.meal.core.domain.entity.Meal(
     area = strArea,
     id = idMeal.toInt(),
     category = strCategory,
     name = strMeal,
     ingredients = mutableListOf<Pair<String, String>>().apply {
-        if (strIngredient1 != null && strMeasure1 != null) {
+        if (strIngredient1?.isNotBlank() == true && strMeasure1?.isNotBlank() == true) {
             add(strIngredient1 to strMeasure1)
         }
-        if (strIngredient2 != null && strMeasure2 != null) {
+        if (strIngredient2?.isNotBlank() == true && strMeasure2?.isNotBlank() == true) {
             add(strIngredient2 to strMeasure2)
         }
-        if (strIngredient3 != null && strMeasure3 != null) {
+        if (strIngredient3?.isNotBlank() == true && strMeasure3?.isNotBlank() == true) {
             add(strIngredient3 to strMeasure3)
         }
-        if (strIngredient4 != null && strMeasure4 != null) {
+        if (strIngredient4?.isNotBlank() == true && strMeasure4?.isNotBlank() == true) {
             add(strIngredient4 to strMeasure4)
         }
-        if (strIngredient4 != null && strMeasure4 != null) {
+        if (strIngredient4?.isNotBlank() == true && strMeasure4?.isNotBlank() == true) {
             add(strIngredient4 to strMeasure4)
         }
-        if (strIngredient5 != null && strMeasure5 != null) {
+        if (strIngredient5?.isNotBlank() == true && strMeasure5?.isNotBlank() == true) {
             add(strIngredient5 to strMeasure5)
         }
-        if (strIngredient6 != null && strMeasure6 != null) {
+        if (strIngredient6?.isNotBlank() == true && strMeasure6?.isNotBlank() == true) {
             add(strIngredient6 to strMeasure6)
         }
-        if (strIngredient7 != null && strMeasure7 != null) {
+        if (strIngredient7?.isNotBlank() == true && strMeasure7?.isNotBlank() == true) {
             add(strIngredient7 to strMeasure7)
         }
-        if (strIngredient8 != null && strMeasure8 != null) {
+        if (strIngredient8?.isNotBlank() == true && strMeasure8?.isNotBlank() == true) {
             add(strIngredient8 to strMeasure8)
         }
-        if (strIngredient9 != null && strMeasure9 != null) {
+        if (strIngredient9?.isNotBlank() == true && strMeasure9?.isNotBlank() == true) {
             add(strIngredient9 to strMeasure9)
         }
-        if (strIngredient10 != null && strMeasure10 != null) {
+        if (strIngredient10?.isNotBlank() == true && strMeasure10?.isNotBlank() == true) {
             add(strIngredient10 to strMeasure10)
         }
-        if (strIngredient11 != null && strMeasure11 != null) {
+        if (strIngredient11?.isNotBlank() == true && strMeasure11?.isNotBlank() == true) {
             add(strIngredient11 to strMeasure11)
         }
-        if (strIngredient12 != null && strMeasure12 != null) {
+        if (strIngredient12?.isNotBlank() == true && strMeasure12?.isNotBlank() == true) {
             add(strIngredient12 to strMeasure12)
         }
-        if (strIngredient13 != null && strMeasure13 != null) {
+        if (strIngredient13?.isNotBlank() == true && strMeasure13?.isNotBlank() == true) {
             add(strIngredient13 to strMeasure13)
         }
-        if (strIngredient14 != null && strMeasure14 != null) {
+        if (strIngredient14?.isNotBlank() == true && strMeasure14?.isNotBlank() == true) {
             add(strIngredient14 to strMeasure14)
         }
-        if (strIngredient15 != null && strMeasure15 != null) {
+        if (strIngredient15?.isNotBlank() == true && strMeasure15?.isNotBlank() == true) {
             add(strIngredient15 to strMeasure15)
         }
-        if (strIngredient16 != null && strMeasure16 != null) {
+        if (strIngredient16?.isNotBlank() == true && strMeasure16?.isNotBlank() == true) {
             add(strIngredient16 to strMeasure16)
         }
-        if (strIngredient17 != null && strMeasure17 != null) {
+        if (strIngredient17?.isNotBlank() == true && strMeasure17?.isNotBlank() == true) {
             add(strIngredient17 to strMeasure17)
         }
-        if (strIngredient18 != null && strMeasure18 != null) {
+        if (strIngredient18?.isNotBlank() == true && strMeasure18?.isNotBlank() == true) {
             add(strIngredient18 to strMeasure18)
         }
-        if (strIngredient19 != null && strMeasure19 != null) {
+        if (strIngredient19?.isNotBlank() == true && strMeasure19?.isNotBlank() == true) {
             add(strIngredient19 to strMeasure19)
         }
-        if (strIngredient20 != null && strMeasure20 != null) {
+        if (strIngredient20?.isNotBlank() == true && strMeasure20?.isNotBlank() == true) {
             add(strIngredient20 to strMeasure20)
         }
     },
     instructions = strInstructions,
-    thumbnail = strMealThumb
+    thumbnail = strMealThumb,
+    youtubeId = strYoutube?.substringAfter("v=")
 )

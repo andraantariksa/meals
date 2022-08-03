@@ -7,7 +7,10 @@ import coil.load
 import io.github.andraantariksa.meal.core.domain.entity.Category
 import io.github.andraantariksa.meals.databinding.CategoryItemBinding
 
-class CategoriesAdapter(private val categories: List<Category>) :
+class CategoriesAdapter(
+    private val categories: List<Category>,
+    private val onClick: ((Category) -> Unit)? = null
+) :
     RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -21,6 +24,11 @@ class CategoriesAdapter(private val categories: List<Category>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = categories[position]
         holder.binding.apply {
+            onClick?.let { onClick ->
+                root.setOnClickListener {
+                    onClick(category)
+                }
+            }
             textViewCategoryName.text = category.name
             imageViewCategoryThumbnail.load(category.thumbnail)
         }

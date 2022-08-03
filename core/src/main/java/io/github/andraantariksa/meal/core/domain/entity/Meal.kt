@@ -8,4 +8,5 @@ open class Meal(
     val ingredients: List<Pair<String, String>>,
     val thumbnail: String,
     val instructions: String,
+    val youtubeId: String?,
 )

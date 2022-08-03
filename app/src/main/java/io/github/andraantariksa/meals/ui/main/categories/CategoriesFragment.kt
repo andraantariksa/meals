@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.andraantariksa.meal.core.util.Resource
 import io.github.andraantariksa.meals.databinding.CategoriesFragmentBinding
@@ -50,12 +50,34 @@ class CategoriesFragment : Fragment() {
             categoriesViewModel.category.collectLatest { res ->
                 when (res) {
                     is Resource.Error -> {
+                        binding.apply {
+                            lottieAnimationViewLoading.isVisible = false
+                            linearLayoutError.isVisible = true
+                            recyclerViewCategories.isVisible = false
+                        }
                     }
                     is Resource.Idle -> throw IllegalStateException()
                     is Resource.Loading -> {
+                        binding.apply {
+                            lottieAnimationViewLoading.isVisible = true
+                            linearLayoutError.isVisible = false
+                            recyclerViewCategories.isVisible = false
+                        }
                     }
                     is Resource.Success -> {
-                        binding.recyclerViewCategories.adapter = CategoriesAdapter(res.data)
+                        binding.apply {
+                            lottieAnimationViewLoading.isVisible = false
+                            linearLayoutError.isVisible = false
+                            recyclerViewCategories.isVisible = true
+                        }
+                        binding.recyclerViewCategories.adapter =
+                            CategoriesAdapter(res.data) { category ->
+                                navController.navigate(
+                                    CategoriesFragmentDirections.actionNavigationCategoriesToNavigationMealsCategory(
+                                        category.name
+                                    )
+                                )
+                            }
                     }
                 }
             }

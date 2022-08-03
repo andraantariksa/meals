@@ -7,18 +7,18 @@
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/imageViewCategoryThumbnail"
+        android:id="@+id/imageViewMealThumbnail"
         tools:srcCompat="@tools:sample/avatars"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:contentDescription="Category thumbnail" />
+        android:contentDescription="Meal thumbnail" />
 
     <TextView
-        android:id="@+id/textViewCategoryName"
+        android:id="@+id/textViewMealName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="16dp"
         android:textSize="20sp"
-        tools:text="Beef Beef Beef Beef Beef Beef Beef Beef Beef Beef" />
+        tools:text="Beef and Mustard Pie Beef and Mustard Pie Beef and Mustard Pie" />
 </LinearLayout>

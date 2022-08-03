@@ -1,4 +1,4 @@
-package io.github.andraantariksa.meal.core.data.data_source_store.local
+package io.github.andraantariksa.meal.core.data.data_source_store.local.data_store
 
 import io.github.andraantariksa.meal.core.util.Theme
 
