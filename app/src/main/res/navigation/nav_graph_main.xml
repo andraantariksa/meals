@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/navigation_home">
+
+    <navigation
+        android:id="@+id/navigation_home"
+        android:label="Home"
+        app:startDestination="@id/navigation_home_main">
+        <fragment
+            android:id="@+id/navigation_home_main"
+            android:name="io.github.andraantariksa.meals.ui.main.categories.CategoriesFragment"
+            android:label="Discover"
+            tools:layout="@layout/categories_fragment">
+            <action
+                android:id="@+id/action_navigation_categories_to_navigation_meals_category"
+                app:destination="@id/navigation_meals_category" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_meals_category"
+            android:name="io.github.andraantariksa.meals.ui.main.meals_category.MealsCategoryFragment"
+            tools:layout="@layout/meals_category_fragment">
+            <argument
+                android:name="categoryId"
+                app:argType="integer" />
+            <action
+                android:id="@+id/action_navigation_categories_to_navigation_meal"
+                app:destination="@id/navigation_meal" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_meal"
+            android:name="io.github.andraantariksa.meals.ui.main.meal.MealFragment"
+            tools:layout="@layout/meal_fragment">
+            <argument
+                android:name="mealId"
+                app:argType="integer" />
+        </fragment>
+    </navigation>
+
+    <navigation
+        android:id="@+id/navigation_search"
+        android:label="Search"
+        app:startDestination="@id/navigation_search_main">
+        <fragment
+            android:id="@+id/navigation_search_main"
+            android:name="io.github.andraantariksa.meals.ui.main.search.SearchFragment"
+            tools:layout="@layout/search_fragment">
+            <action
+                android:id="@+id/action_navigation_search_main_to_navigation_common_anime"
+                app:destination="@id/navigation_meals_category" />
+            <action
+                android:id="@+id/action_navigation_categories_to_navigation_meal"
+                app:destination="@id/navigation_meal" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_meal"
+            android:name="io.github.andraantariksa.meals.ui.main.meal.MealFragment"
+            tools:layout="@layout/meal_fragment">
+            <argument
+                android:name="mealId"
+                app:argType="integer" />
+        </fragment>
+    </navigation>
+
+    <navigation
+        android:id="@+id/navigation_settings"
+        android:label="Misc"
+        app:startDestination="@id/navigation_settings_main">
+        <fragment
+            android:id="@+id/navigation_settings_main"
+            android:name="io.github.andraantariksa.meals.ui.main.settings.SettingsFragment"
+            android:label="Misc"
+            tools:layout="@layout/settings_fragment" />
+    </navigation>
+
+</navigation>
