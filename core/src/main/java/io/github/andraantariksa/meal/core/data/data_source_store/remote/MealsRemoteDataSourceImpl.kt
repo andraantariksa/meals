@@ -15,11 +15,11 @@ class MealsRemoteDataSourceImpl @Inject constructor(private val mealsService: Me
         return mealsService.filterByCategories(category).meals
     }
 
-    override suspend fun search(name: String): List<Meal> {
+    override suspend fun search(name: String): List<Meal>? {
         return mealsService.search(name).meals
     }
 
-    override suspend fun getMeal(id: Int): Meal {
-        return mealsService.getDetail(id).meals[0]
+    override suspend fun getMeal(id: Int): Meal? {
+        return mealsService.getDetail(id).meals?.get(0)
     }
 }

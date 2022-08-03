@@ -1,9 +1,11 @@
 package io.github.andraantariksa.meal.core.di
 
+import android.content.Context
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.github.andraantariksa.meal.core.data.data_source_store.local.MealsLocalDataSource
 import io.github.andraantariksa.meal.core.data.data_source_store.local.MealsLocalDataSourceImpl
@@ -11,9 +13,9 @@ import io.github.andraantariksa.meal.core.data.data_source_store.remote.MealsRem
 import io.github.andraantariksa.meal.core.data.data_source_store.remote.MealsRemoteDataSourceImpl
 import io.github.andraantariksa.meal.core.data.data_source_store.remote.MealsService
 import io.github.andraantariksa.meal.core.data.data_source_store.remote.MealsServiceConst
-import io.github.andraantariksa.meal.core.data.repository.AppPreferenceRepositoryImpl
+import io.github.andraantariksa.meal.core.data.repository.AppSettingsRepositoryImpl
 import io.github.andraantariksa.meal.core.data.repository.MealsRepositoryImpl
-import io.github.andraantariksa.meal.core.domain.repository.AppPreferenceRepository
+import io.github.andraantariksa.meal.core.domain.repository.AppSettingsRepository
 import io.github.andraantariksa.meal.core.domain.repository.MealsRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -55,7 +57,8 @@ object CoreModule {
 
     @Provides
     @Singleton
-    fun provideAppPreferenceRepository(): AppPreferenceRepository = AppPreferenceRepositoryImpl()
+    fun provideAppSettingsRepository(@ApplicationContext context: Context): AppSettingsRepository =
+        AppSettingsRepositoryImpl(context)
 
     @Provides
     @Singleton

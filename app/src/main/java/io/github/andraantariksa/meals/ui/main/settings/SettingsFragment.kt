@@ -8,11 +8,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.andraantariksa.meal.core.util.Theme
 import io.github.andraantariksa.meals.databinding.SettingsFragmentBinding
 
 @AndroidEntryPoint
 class SettingsFragment : Fragment() {
-    private val searchViewModel by viewModels<SettingsViewModel>()
+    private val settingsViewModel by viewModels<SettingsViewModel>()
 
     private var _binding: SettingsFragmentBinding? = null
     private val binding get() = _binding!!
@@ -41,16 +42,18 @@ class SettingsFragment : Fragment() {
     private fun setupView() {
         binding.apply {
             linearLayoutTheme.setOnClickListener {
-                val options = arrayOf("Default", "Light", "Dark")
-                val checkedItem = 1
                 val dialog = AlertDialog.Builder(requireContext())
                     .setTitle("Select a theme")
-                    .setSingleChoiceItems(options, checkedItem) { dialog, which ->
-
+                    .setSingleChoiceItems(
+                        arrayOf("Default", "Light", "Dark"),
+                        Theme.values().indexOf(settingsViewModel.theme.value)
+                    ) { dialog, which ->
+                        settingsViewModel.onIntent(SettingsIntent.SetTheme(Theme.values()[which]))
+                        dialog.dismiss()
                     }
-                    .setPositiveButton("Select") { dialog, which ->
-
-                    }
+//                    .setPositiveButton("Select") { dialog, which ->
+//
+//                    }
                     .setNegativeButton("Cancel", null)
                     .create()
                 dialog.show()

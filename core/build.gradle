@@ -32,7 +32,10 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.room:room-ktx:2.4.2'
+    // Database
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+
     debugImplementation "com.squareup.leakcanary:leakcanary-android:2.9.1"
 //    implementation "net.zetetic:android-database-sqlcipher:4.4.0"
     implementation "androidx.sqlite:sqlite-ktx:2.2.0"
@@ -47,9 +50,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
     // Small Persistence
-    implementation "androidx.datastore:datastore:1.0.0"
+//    implementation "androidx.datastore:datastore:1.0.0"
     implementation "androidx.datastore:datastore-preferences:1.0.0"
-    implementation "androidx.datastore:datastore-core:1.0.0"
+//    implementation "androidx.datastore:datastore-core:1.0.0"
     // Paging
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
     testImplementation "androidx.paging:paging-common-ktx:$pagingVersion"

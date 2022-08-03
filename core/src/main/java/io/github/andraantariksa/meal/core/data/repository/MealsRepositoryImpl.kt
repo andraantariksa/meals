@@ -2,6 +2,7 @@ package io.github.andraantariksa.meal.core.data.repository
 
 import io.github.andraantariksa.meal.core.data.data_source_store.local.MealsLocalDataSource
 import io.github.andraantariksa.meal.core.data.data_source_store.remote.MealsRemoteDataSource
+import io.github.andraantariksa.meal.core.data.exception.ExecutionException
 import io.github.andraantariksa.meal.core.domain.entity.Category
 import io.github.andraantariksa.meal.core.domain.entity.Meal
 import io.github.andraantariksa.meal.core.domain.entity.MealOverview
@@ -17,7 +18,7 @@ class MealsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun search(name: String): Result<List<Meal>> {
-        return Result.success(remoteDataSource.search(name))
+        return Result.success(remoteDataSource.search(name) ?: listOf())
     }
 
     override suspend fun getCategories(): Result<List<Category>> {
@@ -25,6 +26,8 @@ class MealsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMeal(id: Int): Result<Meal> {
-        return Result.success(remoteDataSource.getMeal(id))
+        val result = remoteDataSource.getMeal(id)
+            ?: return Result.failure(ExecutionException("No result found"))
+        return Result.success(result)
     }
 }

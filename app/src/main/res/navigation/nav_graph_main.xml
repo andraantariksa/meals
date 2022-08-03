@@ -32,6 +32,7 @@
         </fragment>
         <fragment
             android:id="@+id/navigation_meal"
+            android:label="Meal"
             android:name="io.github.andraantariksa.meals.ui.main.meal.MealFragment"
             tools:layout="@layout/meal_fragment">
             <argument
@@ -56,6 +57,7 @@
         <fragment
             android:id="@+id/navigation_meal"
             android:name="io.github.andraantariksa.meals.ui.main.meal.MealFragment"
+            android:label="Meal"
             tools:layout="@layout/meal_fragment">
             <argument
                 android:name="mealId"
@@ -65,12 +67,12 @@
 
     <navigation
         android:id="@+id/navigation_settings"
-        android:label="Misc"
+        android:label="Settings"
         app:startDestination="@id/navigation_settings_main">
         <fragment
             android:id="@+id/navigation_settings_main"
             android:name="io.github.andraantariksa.meals.ui.main.settings.SettingsFragment"
-            android:label="Misc"
+            android:label="Settings"
             tools:layout="@layout/settings_fragment" />
     </navigation>
 

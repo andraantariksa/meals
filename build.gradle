@@ -4,7 +4,7 @@ buildscript {
         pagingVersion = "3.1.1"
         navVersion = "2.5.1"
         hiltVersion = "2.42"
-        roomVersion = "2.4.2"
+        roomVersion = "2.4.3"
         moshiVersion = "1.13.0"
         retrofitVersion = "2.9.0"
         flexboxVersion = "3.0.0"

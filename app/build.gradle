@@ -69,6 +69,7 @@ dependencies {
     // Network inspector
 //    debugImplementation "com.github.chuckerteam.chucker:library:$chuckerVersion"
 //    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
     // Leak detector
     debugImplementation "com.squareup.leakcanary:leakcanary-android:2.9.1"
     // Logger
