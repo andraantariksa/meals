@@ -4,16 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.andraantariksa.meals.databinding.SearchFragmentBinding
 import io.github.andraantariksa.meals.databinding.SettingsFragmentBinding
-import io.github.andraantariksa.meals.ui.main.search.SearchViewModel
 
 @AndroidEntryPoint
-class SettingsFragment: Fragment() {
+class SettingsFragment : Fragment() {
     private val searchViewModel by viewModels<SettingsViewModel>()
 
     private var _binding: SettingsFragmentBinding? = null
@@ -41,7 +39,22 @@ class SettingsFragment: Fragment() {
     }
 
     private fun setupView() {
-        val navController = findNavController()
+        binding.apply {
+            linearLayoutTheme.setOnClickListener {
+                val options = arrayOf("Default", "Light", "Dark")
+                val checkedItem = 1
+                val dialog = AlertDialog.Builder(requireContext())
+                    .setTitle("Select a theme")
+                    .setSingleChoiceItems(options, checkedItem) { dialog, which ->
 
+                    }
+                    .setPositiveButton("Select") { dialog, which ->
+
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .create()
+                dialog.show()
+            }
+        }
     }
 }

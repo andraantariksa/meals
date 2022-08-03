@@ -58,8 +58,6 @@ class MealFragment : Fragment() {
     }
 
     private fun setupView() {
-        val navController = findNavController()
-
         lifecycleScope.launch {
             mealViewModel.meal.collectLatest { res ->
                 when (res) {
